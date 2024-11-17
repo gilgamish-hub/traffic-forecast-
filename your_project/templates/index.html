@@ -1,0 +1,166 @@
+<!-- # Creating the index.html content with the necessary updates for the project.
+index_html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Traffic Data Analysis</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>AI Traffic Data Analysis</h1>
+    </header>
+    <main>
+        <section class="input-section">
+            <h2>Upload Your Data</h2>
+            <form id="data-form" action="/upload" method="POST" enctype="multipart/form-data">
+                <label for="file-upload">Select a CSV File:</label>
+                <input type="file" id="file-upload" name="file" accept=".csv" required>
+                <button type="submit">Analyze</button>
+            </form>
+        </section>
+        <section class="output-section">
+            <h2>Results</h2>
+            <div id="results">
+                <p>No results yet. Upload data to see analysis here.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 AI Project</p>
+    </footer>
+
+    <script>
+        const form = document.getElementById('data-form');
+        const resultsDiv = document.getElementById('results');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                if (!response.ok) throw new Error('Error uploading file');
+
+                const result = await response.json();
+                resultsDiv.innerHTML = `
+                    <h3>Analysis Result:</h3>
+                    <p><strong>Rows:</strong> ${result.row_count}</p>
+                    <p><strong>Columns:</strong> ${result.column_count}</p>
+                    <p><strong>Column Names:</strong> ${result.columns.join(', ')}</p>
+                `;
+            } catch (error) {
+                resultsDiv.innerHTML = `<p style="color: red;">${error.message}</p>`;
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>AI Traffic Data Analysis</title>
+     <link rel="stylesheet" href="../static/styles.css">
+ </head>
+ <body>
+     <header>
+         <h1>AI Traffic Data Analysis</h1>
+     </header>
+     <main>
+         <section class="input-section">
+             <h2>Upload Your Data</h2>
+             <form id="data-form" action="/upload" method="POST" enctype="multipart/form-data">
+                 <label for="file-upload">Select a CSV File:</label>
+                 <input type="file" id="file-upload" name="file" accept=".csv" required>
+                 <button type="submit">Analyze</button>
+             </form>
+             
+             <!-- Hidden checkbox to trigger CSS behavior -->
+             <input type="checkbox" id="show-images" hidden>
+         </section>
+ 
+         <section class="output-section">
+             <h2>Results</h2>
+             <div id="results">
+                 <p>No results yet. Upload data to see analysis here.</p>
+             </div>
+ 
+             <!-- Loading and images section -->
+             <div id="loading">
+                 <p>Loading...</p>
+                 <div class="loader"></div>  <!-- Loading spinner -->
+             </div>
+ 
+             <!-- Images section that will be displayed after form submission -->
+             <div id="images" class="images">
+                 <img src="image1.jpg" alt="Analysis Image 1" class="result-image">
+                 <img src="image2.jpg" alt="Analysis Image 2" class="result-image">
+                 <img src="image3.jpg" alt="Analysis Image 3" class="result-image">
+             </div>
+         </section>
+     </main>
+ 
+     <footer>
+         <p>&copy; 2024 AI Project</p>
+     </footer>
+ 
+     <style>
+         /* Loader spinner style */
+         .loader {
+             border: 8px solid #f3f3f3;
+             border-top: 8px solid #3498db;
+             border-radius: 50%;
+             width: 40px;
+             height: 40px;
+             animation: spin 1s linear infinite;
+         }
+ 
+         @keyframes spin {
+             0% { transform: rotate(0deg); }
+             100% { transform: rotate(360deg); }
+         }
+ 
+         /* Hide images initially */
+         #images {
+             display: none;
+         }
+ 
+         /* When the checkbox is checked, display the images */
+         #show-images:checked + #images {
+             display: block;
+         }
+ 
+         /* Image styling */
+         #images img {
+             max-width: 100%;
+             height: auto;
+             display: block;
+             margin: 10px 0;
+         }
+ 
+         /* Ensure the images section is hidden while loading */
+         #loading {
+             display: block;
+         }
+ 
+         /* Use a more appropriate visual cue to show when loading is complete */
+         #show-images:checked + #images + #loading {
+             display: none;
+         }
+     </style>
+ 
+ </body>
+ </html>
+ 
