@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Traffic Data Analysis</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-image: url('../static/images/th.jpg'); /* Set background image */
+            background-size: cover; /* Make the image cover the entire screen */
+            background-position: center; /* Center the background image */
+            background-attachment: fixed; /* Keep the background fixed while scrolling */
+            color: white; /* Make text white so it stands out */
+        }
+
+        header {
+            text-align: center;
+            background: rgba(52, 152, 219, 0.8); /* Semi-transparent blue background */
+            color: white;
+            padding: 0.5px 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .input-section, .output-section {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background for sections */
+            padding: 20px;
+            border-radius: 8px;
+            color: black; /* Black text for better readability */
+        }
+
+        #loading {
+            margin-top: 20px;
+        }
+
+        .result-image {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+
+        button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+
+        footer {
+            text-align: center;
+            padding: 0.5px 0;
+            background: rgba(52, 152, 219, 0.8);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI Traffic Data Analysis</h1>
+    </header>
+    <main>
+        <section class="input-section">
+            <h2>Upload Your Data</h2>
+            <form id="data-form" action="/upload" method="POST" enctype="multipart/form-data">
+                <label for="file-upload">Select a CSV File:</label>
+                <input type="file" id="file-upload" name="file" accept=".csv" required>
+                <button type="submit" id="analyze-btn">Analyze</button>
+            </form>
+        </section>
+
+        <section class="output-section">
+            <h2>Results</h2>
+            <div id="results">
+                <p>No results yet. Upload data to see analysis here.</p>
+            </div>
+
+            <!-- Loading spinner -->
+            <div id="loading" style="display: none;">
+                <p>Loading...</p>
+                <div class="loader"></div>
+            </div>
+
+            <!-- Images section -->
+            <div id="images" style="display: none;">
+                <h3>Analysis Images</h3>
+                <img id="image1" src="" alt="Actual vs Predicted Traffic Count" class="result-image">
+                <img id="image2" src="" alt="Forecast Components" class="result-image">
+                <img id="image3" src="" alt="Exploratory Data Analysis" class="result-image">
+            </div>
+
+            <!-- Additional text section -->
+            <div id="additional-text" style="display: none;">
+                <h3>Additional Insights</h3>
+                <p id="text-content"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 AI Project</p>
+    </footer>
+
+    <script>
+        document.getElementById('data-form').onsubmit = function (e) {
+            const loading = document.getElementById('loading');
+            const results = document.getElementById('results');
+            const images = document.getElementById('images');
+            const additionalText = document.getElementById('additional-text');
+            const textContent = document.getElementById('text-content');
+
+            // Show loading spinner
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            images.style.display = 'none';
+            additionalText.style.display = 'none';
+
+            // Simulate form submission (replace with actual server-side logic)
+            setTimeout(() => {
+                loading.style.display = 'none';
+                results.innerHTML = "<p>Analysis complete! See results below.</p>";
+                images.style.display = 'block';
+                additionalText.style.display = 'block';
+
+                // Update image sources dynamically
+                document.getElementById('image1').src = '../static/images/actual_vs_predicted.png';
+                document.getElementById('image2').src = '../static/images/forecast_components.png';
+                document.getElementById('image3').src = '../static/images/eda.png';
+
+                // Update additional text content
+                textContent.innerHTML = "Here are some insights derived from the analysis:<br>- Peak traffic hours are between 5 PM and 8 PM.<br>- Traffic patterns show a strong correlation with weather conditions.<br>- The predictive model achieves an accuracy of 92%.";
+            }, 3000);
+
+            // Prevent actual form submission for demo
+            e.preventDefault();
+        };
+    </script>
+</body>
+</html>

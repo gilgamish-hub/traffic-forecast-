@@ -1,0 +1,113 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    width: 90%;
+    max-width: 550px;
+    margin: 2rem auto;
+    background: rgba(255, 136, 0, 0.679);
+    padding: 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1, h2 {
+    margin-bottom: 1rem;
+}
+
+.input-section, .output-section {
+    margin-bottom: 2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+input[type="file"] {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: #4CAF50;
+    color: black;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#results {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 4px;
+    text-align: center;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 1rem 0;
+    background-color: #333;
+    color: white;
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Spinner Styles */
+#loading {
+    display: none;
+    position: fixed; /* Fixed position to keep it in view */
+    top: 50%; /* Vertically center it */
+    left: 50%; /* Horizontally center it */
+    transform: translate(-50%, -50%); /* Adjust by 50% to truly center */
+    text-align: center; /* Center any text inside */
+    color: white; /* Text color */
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light gray color for spinner background */
+    border-top: 8px solid #3498db; /* Blue color for spinner top part */
+    border-radius: 50%; /* Circular shape */
+    width: 40px; /* Size of the spinner */
+    height: 40px; /* Size of the spinner */
+    animation: spin 1s linear infinite; /* Spin animation */
+}
+
+/* Spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#images img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}

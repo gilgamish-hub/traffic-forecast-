@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/css/styles.css">
+</head>
+<body>
+    <section id="result-section">
+        <h3>Prediction Result</h3>
+        <img id="dog-image" src="{{ url_for('static', filename='images/actual vs predicted.png') }}" alt="Dog Image">
+        <img id="dog-image" src="{{ url_for('static', filename='images/eda.png') }}" alt="Dog Image">
+        <img id="dog-image" src="{{ url_for('static', filename='images/forecast components.png') }}" alt="Dog Image">
+        <br>
+        <button id="retry-btn" onclick="window.location.href='/'">Try Again</button>
+    </section>
+</body>
+</html>
